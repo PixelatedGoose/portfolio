@@ -30,6 +30,12 @@ body {
 
 }
 
+.about {
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+}
+
 .icon {
     margin: auto;
 
@@ -96,8 +102,6 @@ h2 {
     border-radius: 5px;
     padding: 1rem;
     margin: 1rem 0;
-    box-shadow: 0.4rem 0.4rem 0.5rem #010d5c;
-    
 }
 
 #projects .project:hover {
