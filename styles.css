@@ -11,11 +11,12 @@ body, h1, h2, h3, p, ul, li, a {
     text-align: center;
 }
 
-
 .pic {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    max-width: 100%; /* Ensure the image fits within its container */
+    height: auto; /* Maintain the aspect ratio */
 }
 
 /* Body and General Styling */
@@ -27,7 +28,6 @@ body {
     line-height: 1.6;
     color: rgb(255, 255, 255);
     background-color: #000000;
-
 }
 
 .about {
@@ -38,7 +38,6 @@ body {
 
 .icon {
     margin: auto;
-
     font-size: xx-large;
     color: #fff;
     margin-left: auto;
@@ -96,12 +95,18 @@ h2 {
 }
 
 /* Projects Section */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
 #projects .project {
     background: rgb(22, 1, 99);
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 1rem;
-    margin: 1rem 0;
+    text-align: center;
 }
 
 #projects .project:hover {
@@ -129,4 +134,3 @@ footer {
     color: #fff;
     width: 100%;
 }
-
