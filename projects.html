@@ -14,7 +14,6 @@
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="index.html#about">Skills</a></li>
                     <li><a href="projects.html" class="current-page">Projects</a></li>
                     <li><a href="index.html#contact">Contact</a></li>
                 </ul>
@@ -26,12 +25,12 @@
         <div class="container">
             <h2>All Projects</h2>
             <div class="projects-grid">
-                <div class="project">
+                <div class="project" onclick="openModal('project1')">
                     <h3 class="centered">Chronicles Of The Arcane Goat</h3>
                     <img src="images/MONEY.jpg" class="pic" alt="Project Image">
                     <p>a 2D game i made in Godot. <a href="#">View Project</a></p>
                 </div>
-                <div class="project">
+                <div class="project" onclick="openModal('project2')">
                     <h3>Portfolio</h3>
                     <img src="images/MONEY.jpg" class="pic" alt="Project Image">
                     <p>The website you are on.<a href="#">View Project</a></p>
@@ -46,5 +45,24 @@
             <p> </p>
         </div>
     </footer>
+
+    <!-- Modal Structure -->
+    <div id="project1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('project1')">&times;</span>
+            <h2>Chronicles Of The Arcane Goat</h2>
+            <p>Detailed information about the project...</p>
+        </div>
+    </div>
+
+    <div id="project2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('project2')">&times;</span>
+            <h2>Portfolio</h2>
+            <p>Detailed information about the project...</p>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
 </body>
 </html>
