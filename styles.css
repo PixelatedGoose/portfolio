@@ -84,6 +84,12 @@ nav ul li a:hover {
     color: #007BFF;
 }
 
+nav ul li a.current-page {
+    border: 2px solid #007BFF;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
 /* Section Styling */
 section {
     padding: 2rem 0;
