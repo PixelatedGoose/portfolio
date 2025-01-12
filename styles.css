@@ -38,7 +38,7 @@ body {
 
 .icon {
     margin: auto;
-    font-size: xx-large;
+    font-size: 2rem;
     color: #fff;
     margin-left: auto;
     margin-right: auto;
@@ -50,7 +50,7 @@ body {
     flex: 1;
     width: 80%;
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 75rem;
 }
 
 /* Header Section */
@@ -71,7 +71,7 @@ nav ul {
 }
 
 nav ul li {
-    margin: 0 15px;
+    margin: 0 1rem;
 }
 
 nav ul li a {
@@ -85,9 +85,9 @@ nav ul li a:hover {
 }
 
 nav ul li a.current-page {
-    border: 2px solid #007BFF;
-    padding: 5px 10px;
-    border-radius: 5px;
+    border: 0.125rem solid #007BFF;
+    padding: 0.3125rem 0.625rem;
+    border-radius: 0.3125rem;
 }
 
 /* Section Styling */
@@ -103,14 +103,14 @@ h2 {
 /* Projects Section */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+    gap: 1.25rem;
 }
 
 #projects .project {
     background: rgb(22, 1, 99);
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: 0.0625rem solid #ddd;
+    border-radius: 0.3125rem;
     padding: 1rem;
     text-align: center;
     cursor: pointer;
@@ -143,7 +143,7 @@ footer {
 
 /* Modal Styles */
 .modal {
-    display: none; /* Hidden by default */
+    visibility: hidden; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
@@ -151,24 +151,57 @@ footer {
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    opacity: 0; /* Start with opacity 0 */
+    transition: opacity 0.5s ease, visibility 0.5s ease; /* Transition for fade effect */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.modal.show {
+    visibility: visible;
+    opacity: 1; /* Fade in to opacity 1 */
+}
+
+.modal.hide {
+    visibility: hidden;
+    opacity: 0; /* Fade out to opacity 0 */
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    margin: 5% auto; /* 5% from the top and centered */
+    padding: 1rem;
+    border: 0.0625rem solid #888;
+    width: 60%; /* Reduced width */
+    max-width: 30rem; /* Maximum width */
+    max-height: 80vh; /* Maximum height */
+    overflow-y: auto; /* Enable vertical scroll if needed */
+    color: #000;
+    border-radius: 0.625rem;
+    box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.3);
+}
+
+.modal-pic {
+    display: block;
+    margin: 0 auto 1rem auto;
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.3125rem;
 }
 
 .close {
     color: #aaa;
     float: right;
-    font-size: 28px;
+    font-size: 1.5rem;
     font-weight: bold;
 }
 

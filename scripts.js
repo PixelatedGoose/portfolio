@@ -1,9 +1,13 @@
 function openModal(modalId) {
-    document.getElementById(modalId).style.display = "block";
+    const modal = document.getElementById(modalId);
+    modal.classList.remove('hide');
+    modal.classList.add('show');
 }
 
 function closeModal(modalId) {
-    document.getElementById(modalId).style.display = "none";
+    const modal = document.getElementById(modalId);
+    modal.classList.remove('show');
+    modal.classList.add('hide');
 }
 
 // Close the modal when clicking outside of it
@@ -11,7 +15,7 @@ window.onclick = function(event) {
     const modals = document.getElementsByClassName('modal');
     for (let i = 0; i < modals.length; i++) {
         if (event.target == modals[i]) {
-            modals[i].style.display = "none";
+            closeModal(modals[i].id);
         }
     }
 }
