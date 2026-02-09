@@ -8,45 +8,53 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header>
+    <nav class="navbar">
         <div class="container">
-            <h1>Aarre Vähä-Lassila</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="projects.html" class="current-page">Projects</a></li>
-                    <li><a href="index.html#contact">Contact</a></li>
-                </ul>
-            </nav>
+            <a href="index.html" class="nav-logo">A.V-L</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html" class="current-page">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
         </div>
-    </header>
+    </nav>
 
-    <section id="projects">
+    <section id="projects" style="padding-top: 8rem;">
         <div class="container">
             <h2>All Projects</h2>
             <div class="projects-grid">
                 <div class="project" onclick="openModal('project1')">
-                    <h3 class="centered">Chronicles Of The Arcane Goat</h3>
-                    <img src="images/chronicles.png" class="pic" alt="Project Image">
-                    <p>a 2D game I made in Godot</p>
+                    <img src="images/chronicles.png" class="pic" alt="Chronicles Of The Arcane Goat">
+                    <div class="project-info">
+                        <h3>Chronicles Of The Arcane Goat</h3>
+                        <p>A 2D game made in Godot</p>
+                    </div>
                 </div>
                 <div class="project" onclick="openModal('project2')">
-                    <h3>Portfolio</h3>
-                    <img src="images/portfolio preview2.png" class="pic" alt="Project Image">
-                    <p>The website you are on</p>
+                    <img src="images/MONEY.jpg" class="pic" alt="Portfolio">
+                    <div class="project-info">
+                        <h3>Portfolio</h3>
+                        <p>The website you are on</p>
+                    </div>
                 </div>
-                <!-- Add more projects here -->
+                <div class="project" onclick="openModal('project3')">
+                    <img src="images/placeholder.png" class="pic" alt="Project Title">
+                    <div class="project-info">
+                        <h3>Project Title</h3>
+                        <p>Short description</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container centered">
-            <p> </p>
+            <p>&copy; 2026 Aarre Vähä-Lassila</p>
         </div>
     </footer>
 
-    <!-- Modal Structure -->
+    <!-- Modals -->
     <div id="project1" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('project1')">&times;</span>
@@ -61,9 +69,19 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('project2')">&times;</span>
             <h2>Portfolio</h2>
-            <img src="images/portfolio preview2.png" class="modal-pic" alt="Project Image">
-            <p>This is the website you are currently viewing. I created this portfolio to showcase my projects and skills. It includes sections for my skills, projects, and contact information.</p>
+            <img src="images/MONEY.jpg" class="modal-pic" alt="Project Image">
+            <p>This is the website you are currently viewing. I created this portfolio to showcase my projects and skills.</p>
             <p>Technologies used: HTML, CSS, JavaScript</p>
+        </div>
+    </div>
+
+    <div id="project3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('project3')">&times;</span>
+            <h2>Project Title</h2>
+            <img src="images/placeholder.png" class="modal-pic" alt="Project Image">
+            <p>Describe your project here.</p>
+            <p>Technologies used: </p>
         </div>
     </div>
 

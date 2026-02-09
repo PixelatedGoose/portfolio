@@ -1,21 +1,14 @@
-function openModal(modalId) {
-    const modal = document.getElementById(modalId);
-    modal.classList.remove('hide');
-    modal.classList.add('show');
+function openModal(id) {
+    document.getElementById(id).classList.add('active');
 }
 
-function closeModal(modalId) {
-    const modal = document.getElementById(modalId);
-    modal.classList.remove('show');
-    modal.classList.add('hide');
+function closeModal(id) {
+    document.getElementById(id).classList.remove('active');
 }
 
-// Close the modal when clicking outside of it
-window.onclick = function(event) {
-    const modals = document.getElementsByClassName('modal');
-    for (let i = 0; i < modals.length; i++) {
-        if (event.target == modals[i]) {
-            closeModal(modals[i].id);
-        }
+// Close modal when clicking outside the modal content
+window.addEventListener('click', function(e) {
+    if (e.target.classList.contains('modal')) {
+        e.target.classList.remove('active');
     }
-}
+});

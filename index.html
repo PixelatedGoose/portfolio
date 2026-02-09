@@ -3,64 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Aarre Vähä-Lassila | Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
         <div class="container">
+            <a href="index.html" class="nav-logo"></a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="current-page">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
             <h1>Aarre Vähä-Lassila</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html" class="current-page">Home</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+            <p class="hero-subtitle">Developer & Creator</p>
+            <div class="hero-icons">
+                <i class="fa-brands fa-html5"></i>
+                <i class="fa-brands fa-python"></i>
+                <i class="fab fa-cuttlefish"></i>
+                <i class="fa-brands fa-github"></i>
+            </div>
         </div>
     </header>
 
-    <section id="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <p class="centered">I'm a student programmer and game developer at OSAO vocational school. I have an interest for games and software.</p>
-            <p class="centered">I am currently studying programming at OSAO, where I am learning various programming languages and software development techniques.</p>
-            <br/>
-            <p class="centered"><i class="fa-brands fa-html5 icon"></i><i class="fa-brands fa-github icon"></i><i class="fa-brands fa-python icon"></i><i class="fab fa-cuttlefish icon"></i></p>
-            <br/>
-        </div>
-    </section>
+    <!-- Gradient Transition -->
+    <div class="gradient-divider"></div>
 
+    <!-- Projects Section -->
     <section id="projects">
         <div class="container">
-            <h2>Example Projects</h2>
+            <h2>Featured Projects</h2>
             <div class="projects-grid">
                 <div class="project" onclick="openModal('project1')">
-                    <h3 class="centered">Chronicles Of The Arcane Goat</h3>
-                    <img src="images/chronicles.png" class="pic" alt="Project Image">
-                    <p>a 2D game I made in Godot</p>
+                    <img src="images/chronicles.png" class="pic" alt="Chronicles Of The Arcane Goat">
+                    <div class="project-info">
+                        <h3>Chronicles Of The Arcane Goat</h3>
+                        <p>A 2D game made in Godot</p>
+                    </div>
                 </div>
                 <div class="project" onclick="openModal('project2')">
-                    <h3>Portfolio</h3>
-                    <img src="images/portfolio preview2.png" class="pic" alt="Project Image">
-                    <p>The website you are on</p>
+                    <img src="images/MONEY.jpg" class="pic" alt="Portfolio">
+                    <div class="project-info">
+                        <h3>Portfolio</h3>
+                        <p>The website you are on</p>
+                    </div>
                 </div>
+                <div class="project" onclick="openModal('project3')">
+                    <img src="images/placeholder.png" class="pic" alt="AmisDrift">
+                    <div class="project-info">
+                        <h3>AmisDrift</h3>
+                        <p>An arcade racing game</p>
+                    </div>
+                </div>
+            </div>
+            <div class="centered" style="margin-top: 2rem;">
+                <a href="projects.html" class="see-all-link">See all projects &rarr;</a>
             </div>
         </div>
     </section>
 
+    <!-- Contact Section -->
     <section id="contact">
         <div class="container centered">
-            <h2>Contact Me</h2>
-            <p class="centered">(please don't)</p>
-            <a class="centered" href="https://github.com/PixelatedGoose" target="_blank"><i class="fa-brands fa-github icon"></i></a>
+            <h2>Get In Touch</h2>
+            <p class="contact-subtext">Find me on GitHub</p>
+            <div class="contact-links">
+                <a href="https://github.com/PixelatedGoose" target="_blank" class="contact-btn">
+                    <i class="fa-brands fa-github"></i> GitHub
+                </a>
+            </div>
         </div>
     </section>
 
     <footer>
         <div class="container centered">
-            <p> </p>
+            <p>&copy; 2026 Aarre Vähä-Lassila</p>
         </div>
     </footer>
 
@@ -79,9 +104,19 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('project2')">&times;</span>
             <h2>Portfolio</h2>
-            <img src="images/portfolio preview2.png" class="modal-pic" alt="Project Image">
-            <p>This is the website you are currently viewing. I created this portfolio to showcase my projects and skills. It includes sections for my skills, projects, and contact information.</p>
+            <img src="images/MONEY.jpg" class="modal-pic" alt="Project Image">
+            <p>This is the website you are currently viewing. I created this portfolio to showcase my projects and skills.</p>
             <p>Technologies used: HTML, CSS, JavaScript</p>
+        </div>
+    </div>
+
+    <div id="project3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('project3')">&times;</span>
+            <h2>AmisDrift</h2>
+            <img src="images/placeholder.png" class="modal-pic" alt="Project Image">
+            <p>AmisDrift is a project that I am leading. It is an arcade racing game. The gameplay is to drift and earn score</p>
+            <p>Technologies used: </p>
         </div>
     </div>
 
