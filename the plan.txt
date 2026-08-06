@@ -1,0 +1,32 @@
+"the plan™" (currently the plan has mainly been written for the space background)
+this is the plan for the portfolio style and look.
+some basic info: everything except text is pixel art, art, ui elements, almost everything. some of these images are rather small, so they use 9 slice scaling or some scaling method, but all art must use integers for scale
+
+style
+the style for this portfolio is what i can only describe as "space station", many of the assets are meant to make it feel like the portfolio is on a space station.
+a really important part of the portfolio is the space background. this background would be "generated" in real time from "space" images. it would be layered and use a parallax effect.
+parallax layers
+1. base layer (some stars but mostly black, would not move)
+2. star layer (more stars, would move slowly)
+3. far layer (a layer which randomly uses some far assets nebulae, black holes etc. would move a bit faster than the star layer)
+4. far layer 2 (secondary far layer, just for the sake of possible expansion, would probably not be in use)
+5. medium layer (the layer with the most possible things. space stations, asteroids, easter eggs etc. moves faster than the far layer)
+6 medium layer 2 (the same as the medium layer but a bit faster)
+7. close layer (assets here would move fast)
+
+space background implimentation:
+the base layer would be made of 128x128 images tiled to fill the background (on a 1920x1080 monitor it would be 15 tiles wide and ~8 tiles tall, but for borders it would generate a 16x9 background)
+the star layer would work the same but move faster for the parallax effect and use its own assets.
+the next layers differ from this greatly
+far, medium, close layer assets would be placed "randomly" on the layer, but each layer has a maximum amount of assets on screen at a time.
+apart from all this the space background would use a "traditional" parallax setup, the direction of movement will be random each time the page is loaded
+
+on top of all the space background would be everything else, it is just the background
+
+timeline
+1. planning and portfolio base (we are here)
+2. background (this is next)
+3. "foreground" (ui elements above the space background, header, footer as examples)
+4. effects
+5. functionality
+6. polishing
