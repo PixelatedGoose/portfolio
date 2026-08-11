@@ -298,8 +298,32 @@ async function initSpaceScene() {
     let starOffsetX = 0;
     let starOffsetY = 0;
     let previousTime = null;
+    let sceneTimer = null;
 
-    function updateScene(time) {
+    const SCENE_FRAME_INTERVAL_MS = 1000 / 30;
+
+    function stopSceneAnimation() {
+        if (sceneTimer !== null) {
+            window.clearTimeout(sceneTimer);
+            sceneTimer = null;
+        }
+    }
+
+    function scheduleNextSceneFrame() {
+        sceneTimer = window.setTimeout(updateScene, SCENE_FRAME_INTERVAL_MS);
+    }
+
+    function updateScene() {
+        if (document.hidden) {
+            stopSceneAnimation();
+            previousTime = null;
+            return;
+        }
+
+        sceneTimer = null;
+
+        const time = performance.now();
+
         if (previousTime === null) {
             previousTime = time;
         }
@@ -317,8 +341,12 @@ async function initSpaceScene() {
             baseLayer.style.backgroundPosition = `${Math.round(baseOffsetX)}px ${Math.round(baseOffsetY)}px`;
         }
 
-        movingLayers.forEach(function (layer) {
-            layer.sprites.forEach(function (sprite) {
+        for (let layerIndex = 0; layerIndex < movingLayers.length; layerIndex++) {
+            const layer = movingLayers[layerIndex];
+
+            for (let spriteIndex = 0; spriteIndex < layer.sprites.length; spriteIndex++) {
+                const sprite = layer.sprites[spriteIndex];
+
                 if (!reducedMotion) {
                     sprite.x += sprite.velocityX * delta;
                     sprite.y += sprite.velocityY * delta;
@@ -337,15 +365,29 @@ async function initSpaceScene() {
                 }
 
                 sprite.element.style.transform = `translate3d(${Math.round(sprite.x)}px, ${Math.round(sprite.y)}px, 0)`;
-            });
-        });
+            }
+        }
 
         if (!reducedMotion) {
-            requestAnimationFrame(updateScene);
+            scheduleNextSceneFrame();
         }
     }
 
-    requestAnimationFrame(updateScene);
+    if (!reducedMotion) {
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden) {
+                stopSceneAnimation();
+                previousTime = null;
+                return;
+            }
+
+            if (sceneTimer === null) {
+                scheduleNextSceneFrame();
+            }
+        });
+
+        scheduleNextSceneFrame();
+    }
 }
 
 function findSeparatedPlacement(definition, asset, existingSprites) {
