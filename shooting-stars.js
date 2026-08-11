@@ -18,7 +18,6 @@
         }
 
         const activeStars = [];
-        let previousTime = null;
         let spawnTimer = null;
 
         function scheduleNextSpawn() {
@@ -28,6 +27,20 @@
 
             const delay = randomInteger(MIN_SPAWN_DELAY_MS, MAX_SPAWN_DELAY_MS);
             spawnTimer = window.setTimeout(spawnShootingStar, delay);
+        }
+
+        function removeActiveStar(star) {
+            const index = activeStars.indexOf(star);
+
+            if (index !== -1) {
+                activeStars.splice(index, 1);
+            }
+
+            if (star.fallbackTimer !== null) {
+                window.clearTimeout(star.fallbackTimer);
+            }
+
+            star.element.remove();
         }
 
         function spawnShootingStar() {
@@ -50,51 +63,41 @@
             sprite.style.height = `${asset.height}px`;
             sprite.style.opacity = '1';
             sprite.style.filter = 'drop-shadow(0 0 4px rgba(255, 255, 255, 0.2))';
+            sprite.style.transition = 'transform 1400ms linear, opacity 1400ms linear';
             sprite.style.transform = `translate3d(${Math.round(path.startX)}px, ${Math.round(path.startY)}px, 0)`;
 
             layer.appendChild(sprite);
 
-            activeStars.push({
+            const travelDistance = Math.max(window.innerWidth, window.innerHeight) + STAR_MARGIN * 2 + length;
+            const endX = path.startX + path.direction.x * travelDistance;
+            const endY = path.startY + path.direction.y * travelDistance;
+            const travelDuration = Math.max(800, Math.round((travelDistance / speed) * 1000));
+            const star = {
                 element: sprite,
-                x: path.startX,
-                y: path.startY,
-                velocityX: path.direction.x * speed,
-                velocityY: path.direction.y * speed,
+                fallbackTimer: null,
+            };
+
+            sprite.addEventListener('transitionend', function () {
+                removeActiveStar(star);
+            }, { once: true });
+
+            star.fallbackTimer = window.setTimeout(function () {
+                removeActiveStar(star);
+            }, travelDuration + 250);
+
+            activeStars.push(star);
+
+            sprite.style.transition = `transform ${travelDuration}ms linear, opacity ${travelDuration}ms linear`;
+
+            window.requestAnimationFrame(function () {
+                sprite.style.transform = `translate3d(${Math.round(endX)}px, ${Math.round(endY)}px, 0)`;
+                sprite.style.opacity = '0';
             });
 
             scheduleNextSpawn();
         }
 
-        function update(time) {
-            if (previousTime === null) {
-                previousTime = time;
-            }
-
-            const delta = Math.min((time - previousTime) / 16.6667, 2);
-            previousTime = time;
-
-            for (let index = activeStars.length - 1; index >= 0; index--) {
-                const star = activeStars[index];
-                star.x += star.velocityX * delta;
-                star.y += star.velocityY * delta;
-
-                star.element.style.transform = `translate3d(${Math.round(star.x)}px, ${Math.round(star.y)}px, 0)`;
-
-                if (isOffscreen(star.x, star.y)) {
-                    star.element.remove();
-                    activeStars.splice(index, 1);
-                }
-            }
-
-            window.requestAnimationFrame(update);
-        }
-
         scheduleNextSpawn();
-        window.requestAnimationFrame(update);
-    }
-
-    function isOffscreen(x, y) {
-        return x < -STAR_MARGIN || y < -STAR_MARGIN || x > window.innerWidth + STAR_MARGIN || y > window.innerHeight + STAR_MARGIN;
     }
 
     function createShootingStarPath() {
